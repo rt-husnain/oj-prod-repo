@@ -1,0 +1,82 @@
+<script>
+    $( function() {
+      $( "#sortable1, #sortable2, #sortable3").sortable({
+        connectWith: ".connectedSortable",
+        update : calculate_length
+      }).disableSelection();
+      
+      function calculate_length(event, ui){            
+            var allocated_value = parseInt($("#sortable1 li").index()) + 1;
+            var available_value = parseInt($("#sortable2 li").index()) + 1;    
+            var denied_value = parseInt($("#sortable3 li").index()) + 1;
+            $("#allocated_value").html(allocated_value);
+            $("#available_value").html(available_value);
+            $("#denied_value").html(denied_value);
+
+            $("#sortable3 li").find(".denied_all").each(function() {
+                  $(this).hide();      
+            });
+            $("#sortable1,#sortable2 li").find(".denied_all").each(function() {
+                  $(this).show();      
+            });
+        }
+
+    } );
+</script>
+    <div class="drag_area">
+        <h4>Total Allocated = <span id='allocated_value'>{{countAttendeeSchedules.allocated}}</span> 
+        : Total Available = <span id='available_value'> {{countAttendeeSchedules.available}} </span> 
+        : Total Denied = <span id='denied_value'>  {{countAttendeeSchedules.denied}}</h4> </span>
+        <table class="table table-striped dataTable">
+        <thead>
+            <tr>
+                <th class="" data-fieldname="allocated_contacts">
+                    <div>
+                        <span class='status_label'>
+                            Allocated Contacts
+                        </span>
+                    </div>
+                </th>
+                <th class="" data-fieldname="available_contacts">
+                    <div>
+                         <span class='status_label'>
+                             Available Contacts
+                         </span>
+                     </div>
+                </th>
+                <th class="" data-fieldname="denied_contacts">
+                    <div>
+                        <span class='status_label'>
+                            Denied Contacts
+                        </span>
+                    </div>
+                </th>
+            </tr>
+        </thead>
+    </table>
+    <div class="sortable_cols">
+       <ul id="sortable1" name="allocated_contacts_ul" data-status="01" class="connectedSortable">      
+        {{#each contacts}}
+            {{#eq this.schedule_status "01"}}
+                <li class="ui-state-default contacts_li" data-status="{{this.schedule_status}}" data-id="{{this.id}}"> <span class='contact_name'>  {{this.name}} {{#if this.account_name}} ({{this.account_name}}) {{/if}}  </span> <i class='priority_number' title="Priority"> {{this.priority}} </i>  <i class="fa fa-ban denied_all" title="Denied All" aria-hidden="true"></i></li>
+            {{/eq}}
+        {{/each}}
+        </ul> 
+        <ul id="sortable2" name="available_contacts_ul" data-status="02" class="connectedSortable">
+            {{#each contacts}}
+            {{#eq this.schedule_status "02"}}
+                <li class="ui-state-default contacts_li" data-status="{{this.schedule_status}}" data-id="{{this.id}}"> <span class='contact_name'> {{this.name}} {{#if this.account_name}} ({{this.account_name}}) {{/if}} </span> <i class='priority_number' title="Priority"> {{this.priority}} </i>  <i class="fa fa-ban denied_all" title="Denied All" aria-hidden="true"></i></li>
+            {{/eq}}
+            {{/each}}
+        </ul>
+        <ul id="sortable3" name="denied_contacts_ul" data-status="03" class="connectedSortable">
+           {{#each contacts}}
+            {{#eq this.schedule_status "03"}}
+                <li class="ui-state-default contacts_li" data-status="{{this.schedule_status}}" data-id="{{this.id}}"> <span class='contact_name'> {{this.name}} {{#if this.account_name}} ({{this.account_name}}) {{/if}} </span> <i class='priority_number' title="Priority"> {{this.priority}} </i>  <i class="fa fa-ban denied_all" style="display:none;" title="Denied All" aria-hidden="true"></i> </li>
+            {{/eq}}
+        {{/each}}
+        </ul>
+    </div>
+    </div>
+</div>
+
