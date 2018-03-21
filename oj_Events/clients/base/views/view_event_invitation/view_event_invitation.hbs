@@ -1,0 +1,135 @@
+<style>
+a[name="send_to_all"] {
+
+    font-size:15px;
+    float: left;
+   padding: 10px;
+   border-radius: 5px;
+color: white!important;
+   background-image: linear-gradient(to bottom, #af1110, #af1110);
+  
+}
+a[name="send_to_all"]:hover {
+   text-decoration: none;
+   /* background-image: linear-gradient(to bottom, #af1110, #af1110); */
+   background: #af1110;
+color: white!important;
+}
+a[name="email_compose_button"] {
+  
+   border: 1px solid #af1110;
+   border-radius: 5px !important;
+   float: right;
+   padding: 10px 9px;
+   border-radius: 3px;
+color: white!important;
+   background-image: linear-gradient(to bottom, #af1110, #af1110);
+}
+
+#button .ow_event_invitations:nth-child(3) {
+   margin-top: 50px !important;
+}
+#button .ow_event_invitations:nth-child(4) {
+   margin-top: 50px !important;
+}
+
+
+a[name="paragraph_select_template"]:focus {
+   box-shadow: none !important;
+}
+a.paragraph_select_template:focus {
+    outline: none !important;
+}
+a[name="paragraph_select_template"]:active {
+   box-shadow: none !important;
+}
+#button .ow_event_invitations:nth-child(1) {
+   width: 98%;
+   margin-top: 50px !important;
+   margin-left: 0px !important;
+
+}
+#button .ow_event_invitations:nth-child(2) {
+   width: 100%;
+   margin-top: 10px !important;
+   margin-left: 0px !important;
+}
+.ow_event_invitations a[name="paragraph_select_template"] {
+   border: none;
+   cursor: text;
+   font-size:14px;
+   color:#af1110 !important;
+}
+a[name="paragraph_select_template"]:hover {
+   box-shadow: none !important;
+
+}
+
+.select-template-email .select2-container {
+color:black !important;
+width:26% !important;
+}
+.drawer{
+overflow: auto;
+}
+div#button {
+   overflow: hidden;
+   width: 100%;
+}
+.record-cell.span.ow_event_invitations {
+   display: block;
+   width: 45%;
+   float: left;
+}
+
+
+
+div#s2id_autogen40 {
+   float: right;
+}
+@media(max-width: 1016px){
+.record-cell.span.ow_event_invitations {
+display: block;
+width: 40%;
+float: left;
+}
+}
+@media(max-width: 516px){
+.record-cell.span.ow_event_invitations {
+display: block;
+width: 35%;
+float: left;
+}
+}
+/*
+.ow_event_invitations a{
+   
+ color: white!important;
+}*/
+.ow_event_invitations a:hover{
+    text-decoration: none;
+}
+</style>
+<div class="headerpane">
+   <h1>
+       <div class="btn-toolbar pull-right">
+           {{#each this.meta.buttons}}
+               {{field ../this}}
+           {{/each}}
+       </div>
+   </h1>
+</div>
+<p style="margin-top: 147px;text-align:center;font-size:46px;color:#af1110;font-family:roboto;font-weight:400;">Email Invitations</p>
+<div id="button">
+{{#each meta.panels}}
+    {{#each fields}}
+
+       
+        <div class="record-cell span{{span }} ow_event_invitations" style="margin-left:50px;margin-top: 157px;font-size:15px;text-align:center;float:clear;" >
+            {{field ../../this model=../../this.model template="edit"}}
+        </div>
+    {{/each}}
+
+{{/each}}
+</div>
+

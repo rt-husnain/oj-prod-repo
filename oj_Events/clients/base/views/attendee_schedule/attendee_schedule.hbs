@@ -1,0 +1,45 @@
+<div class="headerpane">
+    <h1>
+        <span class="record-cell" data-type="label" data-name="{{this.eventName}}">
+            <span class="table-cell-wrapper">
+                <span class="index" data-fieldname="title" data-index="">
+                        <span sfuuid="11" class="list-headerpane">{{this.eventName}}</span>
+                </span>
+            </span>
+        </span>
+        <div class="btn-toolbar pull-right dropdown">
+            <span sfuuid="12" class="list-headerpane">
+                <button class="btn btn-primary" id="save_schedule_settings">Save Settings</button>
+            </span>
+            <span sfuuid="12" class="list-headerpane">
+                <button class="btn btn-primary" id="close_attendee_schedule">Close</button>
+            </span>
+        </div>
+    </h1>
+</div>
+<div class="tab-pane">
+    <div id="tabs-content" class="record">
+    {{#each meta.panels}}
+        {{#match name "sessions_panel"}}
+            <div class="row-fluid fields-row">
+            {{#each ../fields}}
+            
+                <div class="span6 panel_body">
+                    <div class="span12 record-cell" data-type="{{type}}" data-name="{{name}}">
+                        {{#if label}}
+                            <div class="record-label" style="padding-bottom:1%;" data-name="{{name}}">{{str label ../../../../this.model.module}}</div>
+                        {{/if}}
+                        {{#if name}}
+                            <span class="normal index" data-fieldname="{{name}}" data-index="">
+                                {{field ../../../../this model=../../../../this.model template="edit"}}
+                            </span>
+                        {{/if}} 
+                    </div>
+                </div>
+            
+            {{/each}}
+        </div>
+        {{/match}}
+    {{/each}}
+    </div>
+
